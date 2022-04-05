@@ -32,10 +32,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(bottom: 8.0.h),
-                  child: DropdownButtonHideUnderline(
+                  child:
+                  DropdownButtonHideUnderline(
                     child: DropdownButton(
-                      items: items.map(buidMenuItems).toList(),
-                      icon: Icon(Icons.keyboard_arrow_down),
+                      items: items.map(buildMenuItems).toList(),
+                      icon: const Icon(Icons.keyboard_arrow_down),
                       iconSize: 30.0,
                       onChanged: (value) => setState(() {
                         this.value = value;
@@ -49,12 +50,12 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TopWinnerWidget(),
+                const TopWinnerWidget(),
                 Padding(
                   padding: EdgeInsets.only(bottom: 50.0.h),
-                  child: TopWinnerWidget(),
+                  child: const TopWinnerWidget(),
                 ),
-                TopWinnerWidget(),
+                const TopWinnerWidget(),
               ],
             ),
             SizedBox(
@@ -68,13 +69,13 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                     children: [
                       ListTile(
                         leading: CircleAvatar(radius: 26.0.r),
-                        title: Text(
+                        title: const Text(
                           "Henry V ",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        trailing: Text("45"),
+                        trailing: const Text("45"),
                       ),
-                      Divider(
+                      const Divider(
                         color: Colors.black,
                       ),
                     ],
@@ -89,7 +90,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
     );
   }
 
-  DropdownMenuItem<String> buidMenuItems(String item) => DropdownMenuItem(
+  DropdownMenuItem<String> buildMenuItems(String item) => DropdownMenuItem(
         value: item,
         child: Text(
           item,

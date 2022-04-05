@@ -73,15 +73,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     });
                   },
                   icon: !_isVisible
-                      ? Icon(
+                      ? const Icon(
                           Icons.visibility,
                           color: Colors.black,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.visibility_off,
                           color: Colors.black,
                         ),
-                  padding: EdgeInsets.all(0.0),
+                  padding: const EdgeInsets.all(0.0),
                   autofocus: true,
                   iconSize: 20.0,
                   disabledColor: Colors.green,

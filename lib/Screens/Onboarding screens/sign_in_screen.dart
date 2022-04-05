@@ -70,15 +70,15 @@ class _SignInScreenState extends State<SignInScreen> {
                               });
                             },
                             icon: !_isVisible
-                                ? Icon(
+                                ? const Icon(
                                     Icons.visibility,
                                     color: Colors.black,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.visibility_off,
                                     color: Colors.black,
                                   ),
-                            padding: EdgeInsets.all(0.0),
+                            padding: const EdgeInsets.all(0.0),
                             autofocus: true,
                             iconSize: 20.0,
                             disabledColor: Colors.green,
@@ -96,15 +96,15 @@ class _SignInScreenState extends State<SignInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Remember Me?"),
+                  const Text("Remember Me?"),
                   InkWell(
                       onTap: () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (ctx) {
-                          return ResetPassWordScreen();
+                          return const ResetPassWordScreen();
                         }));
                       },
-                      child: Text("Forget Password?")),
+                      child: const Text("Forget Password?")),
                 ],
               ),
               SizedBox(height: 50.h),
@@ -113,7 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   onLongPress: () {
                     Navigator.of(context)
                         .pushReplacement(MaterialPageRoute(builder: (ctx) {
-                      return BottomNavigation();
+                      return const BottomNavigation();
                     }));
                   },
                   onTab: () {

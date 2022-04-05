@@ -14,6 +14,14 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+
+  String genderLabel;
+ final items = [
+   "Male",
+   "Female",
+   "Rather not say"
+ ];
+  String value = "Gender";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +36,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 16.0.w),
-            child: Icon(Icons.done),
+            child: const Icon(Icons.done),
           )
         ],
       ),
@@ -45,24 +53,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   radius: 50.0.r,
                   backgroundImage: AssetImage("assets/images/henry.jpg"),
                 ),
-                // Container(
-                //   height: 78.0.h,
-                //   width: 78.0.w,
-                //   decoration: BoxDecoration(
-                //     shape: BoxShape.circle,
-                //     image: DecorationImage(
-                //         image: AssetImage("assets/images/henry.jpg")
-                //     ),
-                //     border: Border.all(
-                //       //width: 3.0.w,
-                //         color: Colors.white
-                //     ),
-                //   ),
-                // ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
               child: Form(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,13 +64,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: 8.0.w, vertical: 16.0.h),
-                    child: Text("First Name"),
+                    child: const Text("First Name"),
                   ),
                   buildTextField(
                     label: "First Name",
                   ),
                   SizedBox(height: 12.0.h),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("Last Name"),
                   ),
@@ -84,16 +78,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     label: "Last Name",
                   ),
                   SizedBox(height: 12.0.h),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("Gender"),
                   ),
-                  buildTextField(
-                    label: "Select Gender",
+                  DropdownButtonFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      )
+                    ),
+                    items: items.map(buildMenuItems).toList(),
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    iconSize: 30.0,
+                    onChanged: (value) => setState(() {
+                      this.value = value;
+                    }),
+                    value:value,
                   ),
+
                   SizedBox(height: 12.0.h),
 
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("Phone Number"),
                   ),
@@ -103,44 +109,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         color: Colors.white,
                         border: Border.all(color: Colors.black),
                         borderRadius: BorderRadius.circular(6.0.r)),
-                    child: Stack(children: [
-                      InternationalPhoneNumberInput(
-                        onInputChanged: (value) {},
-                        selectorTextStyle: TextStyle(color: Colors.black),
-                        // inputDecoration: InputDecoration(
-                        //   contentPadding: EdgeInsets.only(bottom: 15.0.h)
-                        // ),
-                      ),
-                      Positioned(
-                          left: 140,
-                          child: Container(
-                            height: 60.0.h,
-                            width: 1.0.w,
-                            color: Colors.black,
-                          ))
-                    ]),
-                  ),
-                  SizedBox(height: 12.0.h),
-                  // Row(
-                  //   children: [
-                  //           buildTextField(
-                  //             label: "Phone Number",
-                  //           ),
-                  //   ],
-                  // ),
-                  Container(
-                    height: 45.0.h,
-                    width: 80.0.w,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(5.0)),
-                    child: Center(
-                      child: Text("Select"),
+                    child:
+                  InternationalPhoneNumberInput(
+                    onInputChanged: (value) {},
+                    selectorTextStyle: const TextStyle(color: Colors.black),
+                    inputBorder:  const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.zero,
                     ),
+
+
+                  ),
                   ),
                   SizedBox(height: 12.0.h),
-
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("Email Address"),
                   ),
@@ -155,4 +137,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ),
     );
   }
+  DropdownMenuItem<String> buildMenuItems(String item) => DropdownMenuItem(
+    value: item,
+    child: Text(
+      item,
+    ),
+  );
 }
