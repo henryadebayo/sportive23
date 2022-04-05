@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+
+const kAppBarRedColour = Color(0xFFFF3333);
+const kTabBarRedColour = Color(0xFFFF015B);
+const kDarkAshColour = Color(0xFF8E8E8E);
+const kAshBackColour = Color(0xFFF0F1F3);
+const kBlackColour = Colors.black;
+const kActiveGreenColour = Color(0xFF29BB89);
+const kLightGreenCheckBoxColour = Color(0xFF03DAC6);
+const kLightUnselectedButtonAshColour = Color(0xFFC4C4C4);
+const kLightSelectedButtonRedColour = Color(0xFFBD2130);
+const kCommentGreenBackgroundColor = Color(0xFF00BB59);
+const kButtonNavSelectedIconColor = Color(0xFFED1C24);
+const kButtonNavUnselectedIconColor = Color(0xFF8B90A0);
+const kAppBarIconButtonColor = Color(0xFF4F4F4F);
+const kScoreBoxGreenColor = Color(0xFF57C467);
+const kStatAppBarGreenColor = Color(0xFF00C69D);
+const kPredictionLeagueAppBarColor = Color(0xFF00004B);
+const kUserAppBarColor = Color(0xFF00004B);
+const ksettingsScreenTextColor = Color(0xFF004BCC);
+const kUserBalanceColor = Color(0xFFED1C24);
+const kUserRecColor = Color(0xFFE5E5E5);
