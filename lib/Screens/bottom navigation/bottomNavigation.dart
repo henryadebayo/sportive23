@@ -17,12 +17,12 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  List<Widget> _myPages = [
+  final List<Widget> _myPages = [
     MyHomePage(),
-    TeamScreen(),
-    PredictScreen(),
-    StatsPage(),
-    profile_screen(),
+    const TeamScreen(),
+    const PredictScreen(),
+    const StatsPage(),
+    const profile_screen(),
   ];
 
   int _pageIndex = 0;
