@@ -40,7 +40,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           currentIndex: _pageIndex,
           onTap: _onItemTap,
           type: BottomNavigationBarType.fixed,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               label: "Home",
               icon: Icon(Sportive.home),
