@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:3/Screens/homeScreen/homePage.dart';
-import 'package:3/Screens/predict/predict_screen.dart';
-import 'package:3/Screens/profile%20screen/profile_view.dart';
-import 'package:3/Screens/stat%20screens/main_stats_screen.dart';
-import 'package:3/const/coloursConst.dart';
+import 'package:sportive23/Screens/homeScreen/homePage.dart';
+import 'package:sportive23/Screens/predict/predict_screen.dart';
+import 'package:sportive23/Screens/profile%20screen/profile_view.dart';
+import 'package:sportive23/Screens/stat%20screens/main_stats_screen.dart';
+import 'package:sportive23/const/coloursConst.dart';
 
 import '../../sportive_icons.dart';
 import '../team/team_Screen.dart';
