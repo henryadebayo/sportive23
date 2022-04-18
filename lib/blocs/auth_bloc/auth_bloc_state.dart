@@ -4,5 +4,5 @@ part of 'auth_bloc_bloc.dart';
 abstract class AuthBlocState {}
 
 class AuthBlocInitial extends AuthBlocState {}
-class AuthBlocSignIn extends AuthBlocState {}
+class AuthBlocSignInn extends AuthBlocState {}
 
