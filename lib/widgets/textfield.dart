@@ -4,12 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 
-Widget buildTextField({String  label, var controller, var keyboardType, var autofill, var validator, IconButton suffixIcon, double height, bool hideText}){
+Widget buildTextField({String  label, var controller, var keyboardType, var autofill, var validator, IconButton suffixIcon, double height, bool hideText,var onSaved}){
 
   return TextFormField(
     keyboardType: keyboardType,
     autofillHints: [autofill],
     validator: validator,
+    onSaved: onSaved,
     decoration: InputDecoration(
       suffix: suffixIcon,
       border: OutlineInputBorder(
@@ -31,13 +32,14 @@ Widget buildTextField({String  label, var controller, var keyboardType, var auto
 }
 
 
-Widget buildPasswordTextField({String  label, var controller, var keyboardType, var autofill, var validator, IconButton suffixIcon, double height, bool hideText}){
+Widget buildPasswordTextField({String  label, var controller, var keyboardType, var autofill, var validator, IconButton suffixIcon, double height, bool hideText, var onSaved}){
 
   return TextFormField(
 
     keyboardType: keyboardType,
     autofillHints: [autofill],
     validator: validator,
+    onSaved: onSaved,
     obscureText:hideText,
     decoration: InputDecoration(
       suffix: suffixIcon,

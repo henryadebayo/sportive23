@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sportive23/Screens/Onboarding%20screens/ressetPassword_Screen.dart';
 import 'package:sportive23/Screens/bottom%20navigation/bottomNavigation.dart';
+import 'package:sportive23/repo/model/user_model.dart';
+import 'package:sportive23/repo/services.dart/api_services.dart';
 import 'package:sportive23/widgets/orWithDivider.dart';
 import 'package:sportive23/widgets/textfield.dart';
 import 'package:sportive23/widgets/transparentButtonWidget.dart';
@@ -21,6 +23,10 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final formKey = GlobalKey<FormState>();
   bool _isVisible = false;
+  AuthServices authServices;
+   UserModel userModel;
+
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -54,6 +60,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       buildTextField(
                         label: "Email",
                         autofill: AutofillHints.email,
+                        onSaved: (String value){
+                           userModel.email = value;
+                        },
                         validator: (email) =>
                             email != null && !EmailValidator.validate(email)
                                 ? "enter your valid email"
@@ -69,6 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 _isVisible = !_isVisible;
                               });
                             },
+
                             icon: !_isVisible
                                 ? const Icon(
                                     Icons.visibility,
@@ -83,6 +93,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             iconSize: 20.0,
                             disabledColor: Colors.green,
                           ),
+                          onSaved: (String value){
+                            userModel.password = value;
+                          },
                           validator: (value) {
                             if (value.isEmpty) {
                               return "please input your password";
@@ -118,10 +131,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   },
                   onTab: () {
                     if (formKey.currentState.validate()) {
+                      authServices.SignIn(userModel.email, userModel.password);
+                      // if(authServices.){
+                      //
+                      // }
                       Navigator.of(context)
                           .pushReplacement(MaterialPageRoute(builder: (ctx) {
-                        //TODO 3:  implement login function
-                        return BottomNavigation();
+                        return const BottomNavigation();
                       }));
                     } else {
                       return "Please input a valid email and password";

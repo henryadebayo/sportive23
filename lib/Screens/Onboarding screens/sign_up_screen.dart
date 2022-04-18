@@ -5,10 +5,13 @@ import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/widgets/orWithDivider.dart';
 import 'package:sportive23/widgets/textfield.dart';
 
+import '../../repo/model/user_model.dart';
+import '../../repo/services.dart/api_services.dart';
+
 class SignUpScreen extends StatefulWidget {
   int nextIndex;
 
-  SignUpScreen({this.nextIndex});
+  SignUpScreen({Key key, this.nextIndex}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -20,6 +23,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TabController _controller;
   final formKey = GlobalKey<FormState>();
   bool _isVisible = false;
+  AuthServices authServices;
+  UserModel userModel;
 
   @override
   void dispose() {
@@ -38,6 +43,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(children: [
             buildTextField(
                 label: "First Name",
+                onSaved: (String value){
+                  userModel.firstName = value;
+                },
                 validator: (value) {
                   if (value.isEmpty ||
                       !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
@@ -47,6 +55,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(height: 20.h),
             buildTextField(
                 label: "Last Name",
+                onSaved: (String value){
+                  userModel.lastName = value;
+                },
                 validator: (value) {
                   if (value.isEmpty ||
                       !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
@@ -57,6 +68,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             buildTextField(
                 keyboardType: TextInputType.emailAddress,
                 autofill: AutofillHints.email,
+                onSaved: (String value){
+                  userModel.email = value;
+                },
                 validator: (email) =>
                     email != null && !EmailValidator.validate(email)
                         ? "enter a valid email"
@@ -86,6 +100,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   iconSize: 20.0,
                   disabledColor: Colors.green,
                 ),
+                onSaved: (String value){
+                  userModel.password = value;
+                },
                 validator: (value) {
                   if (value.isEmpty) {
                     //TODO 2 : validate password input
@@ -99,8 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () {
                   if (formKey.currentState.validate()) {
                     //check if form data are valid
-                    // TODO 1: Implement process task for form if valid
-                  }
+                   authServices.SignUp(userModel.email, userModel.password, userModel.firstName, userModel.lastName);                }
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kAppBarRedColour),

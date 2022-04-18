@@ -9,19 +9,24 @@ import 'package:sportive23/repo/model/user_model.dart';
 class AuthServices{
 
 
-  UserModel _userModel = UserModel();
+  final UserModel _userModel = UserModel();
 
 
-  Future<dynamic> SignUp(String email, String password)async{
+  Future<dynamic> SignUp(String email, String password, String firstName, String lastName)async{
 
     try{
-      var response = http.post(Uri.parse('$baseUrl/signup')
+      var response = await http.post(Uri.parse('$baseUrl/signup')
       ,body: {
         "email": _userModel.email,
             "password": _userModel.password,
             "firstname":_userModel.firstName,
             "lastname":_userModel.lastName,
           });
+      if(response.statusCode == 200){
+        print("signed up sucessfully");
+      }else{
+        print("error");
+      }
       return response;
     }catch(e){
       print(e);
@@ -31,13 +36,19 @@ class AuthServices{
 
 
 
-  Future<dynamic> SignIn(String email, String password){
+  Future<dynamic> SignIn(String email, String password)async{
     try{
-      var response = http.post(Uri.parse('$baseUrl/login'),body: {
+      var response = await http.post(Uri.parse('$baseUrl/login'),
+          body: {
         "email": email,
         "password": password,
       });
-      return null;
+      if(response.statusCode == 200){
+        print("signed in sucessfully");
+      }else{
+        print("error");
+      }
+      return response.body.toString();
     }catch(e){
      print(e);
     }
