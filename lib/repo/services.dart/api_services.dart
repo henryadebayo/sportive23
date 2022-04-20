@@ -23,9 +23,9 @@ class AuthServices{
             "lastname":_userModel.lastName,
           });
       if(response.statusCode == 200){
-        print("signed up sucessfully");
+        print("signed up successfully");
       }else{
-        print("error");
+        print("error signing up and response status code is ${response.statusCode}");
       }
       return response;
     }catch(e){
@@ -44,9 +44,9 @@ class AuthServices{
         "password": password,
       });
       if(response.statusCode == 200){
-        print("signed in sucessfully");
+        print("signed in successfully");
       }else{
-        print("error");
+        print("error signing In and response status code is ${response.statusCode}");
       }
       return response.body.toString();
     }catch(e){
