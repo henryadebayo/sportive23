@@ -24,7 +24,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final formKey = GlobalKey<FormState>();
   bool _isVisible = false;
   AuthServices authServices;
-   UserModel userModel;
+   UserModel userModel = UserModel();
 
 
   @override

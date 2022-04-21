@@ -24,7 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final formKey = GlobalKey<FormState>();
   bool _isVisible = false;
   AuthServices authServices;
-  UserModel userModel;
+  UserModel userModel = UserModel();
 
   @override
   void dispose() {
