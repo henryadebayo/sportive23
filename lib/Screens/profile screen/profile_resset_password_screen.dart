@@ -23,29 +23,29 @@ class ProfileRessetPasswordScreen extends StatelessWidget {
         child: Form(
           child: Column(
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text("Curent Password"),
               ),
-              buildTextField(
+              CustomTextForm(
                 label: "Curent Password",
               ),
               TextButton(
                 onPressed: () {},
                 child: Text("Forget Password"),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text("New Password"),
               ),
-              buildTextField(
+              CustomTextForm(
                 label: "New Password",
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text("Confirm Password"),
               ),
-              buildTextField(
+              CustomTextForm(
                 label: "Confirm Password",
               ),
             ],

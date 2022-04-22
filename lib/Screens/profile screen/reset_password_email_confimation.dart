@@ -21,11 +21,11 @@ class InputEmail extends StatelessWidget {
             child: Form(
                 child: Column(
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text("Gender"),
             ),
-            buildTextField(
+            CustomTextForm(
               label: "Select Gender",
             ),
           ],

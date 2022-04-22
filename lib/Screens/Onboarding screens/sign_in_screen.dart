@@ -57,19 +57,16 @@ class _SignInScreenState extends State<SignInScreen> {
                   key: formKey,
                   child: Column(
                     children: [
-                      buildTextField(
+                      CustomTextForm(
                         label: "Email",
                         autofill: AutofillHints.email,
-                        onSaved: (String value){
-                           userModel.email = value;
-                        },
                         validator: (email) =>
                             email != null && !EmailValidator.validate(email)
                                 ? "enter your valid email"
                                 : null,
                       ),
                       SizedBox(height: 16.h),
-                      buildPasswordTextField(
+                      CustomPasswordTextField(
                           label: "Password",
                           hideText: _isVisible,
                           suffixIcon: IconButton(
@@ -78,7 +75,6 @@ class _SignInScreenState extends State<SignInScreen> {
                                 _isVisible = !_isVisible;
                               });
                             },
-
                             icon: !_isVisible
                                 ? const Icon(
                                     Icons.visibility,
@@ -93,7 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             iconSize: 20.0,
                             disabledColor: Colors.green,
                           ),
-                          onSaved: (String value){
+                          onChanged: (value){
                             userModel.password = value;
                           },
                           validator: (value) {

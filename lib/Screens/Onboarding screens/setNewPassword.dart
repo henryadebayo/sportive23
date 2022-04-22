@@ -36,9 +36,9 @@ class SetNewPassword extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 16.h),
-                  buildTextField(label: "New Password"),
+                  CustomTextForm(label: "New Password"),
                   SizedBox(height: 16.h),
-                  buildTextField(label: "Confirm Password"),
+                  CustomTextForm(label: "Confirm Password"),
                 ],
               ),
             ),

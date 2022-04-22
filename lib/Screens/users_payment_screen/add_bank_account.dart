@@ -20,25 +20,25 @@ class AddBankAccount extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0.h),
-                child: ShowCountry(),
+                child: const ShowCountry(),
               ),
               Form(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text("Bank Account Number"),
                     ),
-                    buildTextField(
+                    CustomTextForm(
                       label: "Enter Account Number",
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text("Bank Name"),
                     ),
-                    buildTextField(
+                    CustomTextForm(
                       label: "Enter Bank Name",
                     ),
                     SizedBox(

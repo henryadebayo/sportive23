@@ -26,6 +26,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   AuthServices authServices;
   UserModel userModel = UserModel();
 
+  String firstName;
+  String lastName;
+  String email;
+  String password;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -40,35 +45,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Form(
           key: formKey,
           child: Column(children: [
-            buildTextField(
+            CustomTextForm(
                 label: "First Name",
-                onSaved: (String value){
-                  userModel.firstName = value;
+                onChanged: (value){
+                  firstName = value;
                 },
                 validator: (value) {
                   if (value.isEmpty ||
                       !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
                     return "Please Enter a valid First Name";
                   }
+                  return null;
                 }),
             SizedBox(height: 20.h),
-            buildTextField(
+            CustomTextForm(
                 label: "Last Name",
-                onSaved: (String value){
-                  userModel.lastName = value;
+                onChanged: (value){
+                  lastName = value;
                 },
                 validator: (value) {
                   if (value.isEmpty ||
                       !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
                     return "Please Enter a valid Last Name";
                   }
+                  return null;
                 }),
             SizedBox(height: 20.h),
-            buildTextField(
+            CustomTextForm(
                 keyboardType: TextInputType.emailAddress,
                 autofill: AutofillHints.email,
-                onSaved: (String value){
-                  userModel.email = value;
+                onChanged: (value){
+                  email = value;
                 },
                 validator: (email) =>
                     email != null && !EmailValidator.validate(email)
@@ -76,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         : null,
                 label: "Email"),
             SizedBox(height: 20.h),
-            buildPasswordTextField(
+            CustomPasswordTextField(
                 label: "Password",
                 hideText: _isVisible,
                 suffixIcon: IconButton(
@@ -99,14 +106,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   iconSize: 20.0,
                   disabledColor: Colors.green,
                 ),
-                onSaved: (String value){
-                  userModel.password = value;
+                onChanged:(value){
+                  password =value;
                 },
                 validator: (value) {
                   if (value.isEmpty) {
                     //TODO 2 : validate password input
                     return "please input password";
                   }
+                  return null;
                 }),
             SizedBox(height: 40.h),
             SizedBox(
@@ -115,7 +123,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () {
                   if (formKey.currentState.validate()) {
                     //check if form data are valid
-                   authServices.SignUp(userModel.email, userModel.password, userModel.firstName, userModel.lastName);                }
+                  // authServices.SignUp(userModel.email, userModel.password, userModel.firstName, userModel.lastName);
+                    print("$email  this is email",);
+                    print("$firstName  this is firstname",);
+                    print("$lastName this is lastname",);
+                    print("$password this is password",);
+                 }
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kAppBarRedColour),
@@ -139,16 +152,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: TextButton(
                     onPressed: () {},
                     style: ButtonStyle(
-                      side: MaterialStateProperty.all(BorderSide()),
+                      side: MaterialStateProperty.all(const BorderSide()),
                       foregroundColor:
-                          MaterialStateProperty.all(Color(0xFF3B5998)),
+                          MaterialStateProperty.all(const Color(0xFF3B5998)),
                       padding: MaterialStateProperty.all(
                           EdgeInsets.symmetric(vertical: 14.0.h)),
                     ),
                     child: Text(
                       "Facebook",
                       style:
-                          TextStyle(fontSize: 16.sp, color: Color(0xFF3B5998)),
+                          TextStyle(fontSize: 16.sp, color: const Color(0xFF3B5998)),
                     ),
                   ),
                 ),
@@ -159,9 +172,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: TextButton(
                     onPressed: () {},
                     style: ButtonStyle(
-                      side: MaterialStateProperty.all(BorderSide()),
+                      side: MaterialStateProperty.all(const BorderSide()),
                       foregroundColor:
-                          MaterialStateProperty.all(Color(0xFF4c8bf5)),
+                          MaterialStateProperty.all(const Color(0xFF4c8bf5)),
                       padding: MaterialStateProperty.all(
                           EdgeInsets.symmetric(vertical: 14.0.h)),
                     ),

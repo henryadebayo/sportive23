@@ -53,7 +53,7 @@ class _ResetPassWordScreenState extends State<ResetPassWordScreen> {
               ),
               SizedBox(height: 20.h),
 //email field
-              buildTextField(label: "Your Email"),
+              CustomTextForm(label: "Your Email"),
 
               SizedBox(height: 100.h),
 

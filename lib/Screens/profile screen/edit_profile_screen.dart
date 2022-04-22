@@ -66,7 +66,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         horizontal: 8.0.w, vertical: 16.0.h),
                     child: const Text("First Name"),
                   ),
-                  buildTextField(
+                  CustomTextForm(
                     label: "First Name",
                   ),
                   SizedBox(height: 12.0.h),
@@ -74,7 +74,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     padding: EdgeInsets.all(8.0),
                     child: Text("Last Name"),
                   ),
-                  buildTextField(
+                  CustomTextForm(
                     label: "Last Name",
                   ),
                   SizedBox(height: 12.0.h),
@@ -126,7 +126,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     padding: EdgeInsets.all(8.0),
                     child: Text("Email Address"),
                   ),
-                  buildTextField(
+                  CustomTextForm(
                     label: "Email Address",
                   ),
                 ],

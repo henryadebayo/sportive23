@@ -2,62 +2,102 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class CustomTextForm extends StatelessWidget {
+  String  label;
+  var controller;
+  var keyboardType;
+  var autofill;
+  FormFieldValidator validator;
+      IconButton suffixIcon;
+  double height;
+      bool hideText;
+  final ValueChanged<String> onChanged;
+   CustomTextForm({Key key, this.onChanged, this.controller,
+     this.label,
+     this.autofill,
+     this.height,
+   this.suffixIcon,
+     this.hideText,
+     this.keyboardType,
+     this.validator,
+   }) : super(key: key);
 
-
-Widget buildTextField({String  label, var controller, var keyboardType, var autofill, var validator, IconButton suffixIcon, double height, bool hideText,var onSaved}){
-
-  return TextFormField(
-    keyboardType: keyboardType,
-    autofillHints: [autofill],
-    validator: validator,
-    onSaved: onSaved,
-    decoration: InputDecoration(
-      suffix: suffixIcon,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.0.r),
-        borderSide: const BorderSide(color: Colors.black),
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      keyboardType: keyboardType,
+      autofillHints: [autofill],
+      validator: validator,
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        suffix: suffixIcon,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0.r),
+          borderSide: const BorderSide(color: Colors.black),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4.0.r),
+          //borderSide: BorderSide(color: Colors.black),
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 14.h,),
+        hintText: label,
+        hintStyle: TextStyle(
+            fontSize: 15.sp
+        ),
       ),
-      enabledBorder: OutlineInputBorder(
-  borderRadius: BorderRadius.circular(4.0.r),
-  //borderSide: BorderSide(color: Colors.black),
-      ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 14.h,),
-      hintText: label,
-      hintStyle: TextStyle(
-        fontSize: 15.sp
-      ),
-    ),
 
-  );
+    );
+  }
 }
 
+class CustomPasswordTextField extends StatelessWidget {
+  final String  label;
+  var controller;
+  var keyboardType;
+  var autofill;
+  final FormFieldValidator validator;
+  final IconButton suffixIcon;
+  final double height;
+  final bool hideText;
+  final ValueChanged<String> onChanged;
 
-Widget buildPasswordTextField({String  label, var controller, var keyboardType, var autofill, var validator, IconButton suffixIcon, double height, bool hideText, var onSaved}){
+   CustomPasswordTextField({Key key, this.validator,
+    this.keyboardType,
+    this.hideText,
+     this.suffixIcon,
+     this.height,
+     this.autofill,
+     this.label,
+     this.controller,
+     this.onChanged
+  }) : super(key: key);
 
-  return TextFormField(
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
 
-    keyboardType: keyboardType,
-    autofillHints: [autofill],
-    validator: validator,
-    onSaved: onSaved,
-    obscureText:hideText,
-    decoration: InputDecoration(
-      suffix: suffixIcon,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.0.r),
-        borderSide: const BorderSide(color: Colors.black),
+      keyboardType: keyboardType,
+      autofillHints: [autofill],
+      validator: validator,
+      obscureText:hideText,
+      decoration: InputDecoration(
+        suffix: suffixIcon,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0.r),
+          borderSide: const BorderSide(color: Colors.black),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4.0.r),
+          //borderSide: BorderSide(color: Colors.black),
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 5.0.h,),
+        hintText: label,
+        hintStyle: TextStyle(
+            fontSize: 15.sp
+        ),
       ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4.0.r),
-        //borderSide: BorderSide(color: Colors.black),
-      ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 5.0.h,),
-      hintText: label,
-      hintStyle: TextStyle(
-          fontSize: 15.sp
-      ),
-    ),
 
-  );
+    );
+  }
 }
 
