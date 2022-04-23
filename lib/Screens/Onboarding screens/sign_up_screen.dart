@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sportive23/Screens/bottom%20navigation/bottomNavigation.dart';
 import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/widgets/orWithDivider.dart';
 import 'package:sportive23/widgets/textfield.dart';
@@ -23,13 +24,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TabController _controller;
   final formKey = GlobalKey<FormState>();
   bool _isVisible = false;
-  AuthServices authServices;
-  UserModel userModel = UserModel();
+  AuthServices authServices = AuthServices();
+  final UserModel userModel = UserModel();
 
-  String firstName;
-  String lastName;
-  String email;
-  String password;
+
 
   @override
   void dispose() {
@@ -48,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             CustomTextForm(
                 label: "First Name",
                 onChanged: (value){
-                  firstName = value;
+                  userModel.firstName = value;
                 },
                 validator: (value) {
                   if (value.isEmpty ||
@@ -61,7 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             CustomTextForm(
                 label: "Last Name",
                 onChanged: (value){
-                  lastName = value;
+                  userModel.lastName = value;
                 },
                 validator: (value) {
                   if (value.isEmpty ||
@@ -75,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.emailAddress,
                 autofill: AutofillHints.email,
                 onChanged: (value){
-                  email = value;
+                  userModel.email = value;
                 },
                 validator: (email) =>
                     email != null && !EmailValidator.validate(email)
@@ -107,7 +105,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   disabledColor: Colors.green,
                 ),
                 onChanged:(value){
-                  password =value;
+                  userModel.password =value;
                 },
                 validator: (value) {
                   if (value.isEmpty) {
@@ -123,11 +121,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () {
                   if (formKey.currentState.validate()) {
                     //check if form data are valid
-                  // authServices.SignUp(userModel.email, userModel.password, userModel.firstName, userModel.lastName);
-                    print("$email  this is email",);
-                    print("$firstName  this is firstname",);
-                    print("$lastName this is lastname",);
-                    print("$password this is password",);
+                  authServices.SignUp(userModel.password, userModel.email, userModel.firstName, userModel.lastName);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
+                    return  BottomNavigation();
+                  }));
                  }
                 },
                 style: ButtonStyle(
