@@ -12,8 +12,9 @@ import 'package:sportive23/widgets/transparentButtonWidget.dart';
 import 'widgets/login_SigninButton.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({
-    Key key,
+  Function onTap;
+   SignInScreen({
+    Key key, this.onTap
   }) : super(key: key);
 
   @override

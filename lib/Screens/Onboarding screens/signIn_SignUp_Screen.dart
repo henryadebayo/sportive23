@@ -12,13 +12,14 @@ import 'package:sportive23/widgets/textfield.dart';
 import 'package:sportive23/widgets/transparentButtonWidget.dart';
 
 class SignInSignOut extends StatefulWidget {
-  const SignInSignOut({Key key}) : super(key: key);
+
+   const SignInSignOut({Key key}) : super(key: key);
 
   @override
   _SignInSignOutState createState() => _SignInSignOutState();
 }
 
-class _SignInSignOutState extends State<SignInSignOut> {
+class _SignInSignOutState extends State<SignInSignOut> with SingleTickerProviderStateMixin {
   TabController customTabController;
 
 
@@ -27,7 +28,12 @@ class _SignInSignOutState extends State<SignInSignOut> {
     super.initState();
     customTabController = TabController(length: 2, vsync: this);
   }
-  //final int _index = 0;
+
+  @override
+  void dispose() {
+    customTabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

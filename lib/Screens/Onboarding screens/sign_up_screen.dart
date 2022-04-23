@@ -34,7 +34,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    var onTap;
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 24.h),
@@ -188,7 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: Widget.onTap,
+                onPressed: widget.onTap,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kAppBarRedColour),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
