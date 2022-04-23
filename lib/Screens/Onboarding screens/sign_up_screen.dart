@@ -10,9 +10,9 @@ import '../../repo/model/user_model.dart';
 import '../../repo/services.dart/api_services.dart';
 
 class SignUpScreen extends StatefulWidget {
-  int nextIndex;
+  Function onTap;
 
-  SignUpScreen({Key key, this.nextIndex}) : super(key: key);
+  SignUpScreen({Key key, this.onTap}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -21,22 +21,20 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final emailController = TextEditingController();
 
-  TabController _controller;
+  
   final formKey = GlobalKey<FormState>();
   bool _isVisible = false;
   AuthServices authServices = AuthServices();
   final UserModel userModel = UserModel();
-
-
 
   @override
   void dispose() {
     emailController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
+    var onTap;
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 24.h),
@@ -121,7 +119,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: () {
                   if (formKey.currentState.validate()) {
                     //check if form data are valid
-                  authServices.SignUp(userModel.password, userModel.email, userModel.firstName, userModel.lastName);
+                  //authServices.SignUp(userModel.password, userModel.email, userModel.firstName, userModel.lastName);
+                  print("this is the response statuscode :${authServices.responseBody}");
                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
                     return  BottomNavigation();
                   }));
@@ -189,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: Widget.onTap,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kAppBarRedColour),
                   foregroundColor: MaterialStateProperty.all(Colors.white),

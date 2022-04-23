@@ -19,44 +19,55 @@ class SignInSignOut extends StatefulWidget {
 }
 
 class _SignInSignOutState extends State<SignInSignOut> {
-  int _index = 0;
+  TabController customTabController;
+
+
+  @override
+  void initState() {
+    super.initState();
+    customTabController = TabController(length: 2, vsync: this);
+  }
+  //final int _index = 0;
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: _index,
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Text(
-            "Register",
-            style: kNormalWhiteTextStyle,
-          ),
-          centerTitle: true,
-          bottom: TabBar(
-            indicatorColor: kAppBarRedColour,
-            labelColor: kAppBarRedColour,
-            unselectedLabelColor: Colors.black,
-            tabs: [
-              Tab(
-                text: "SIGN UP",
-              ),
-              Tab(
-                text: "SIGN IN",
-              ),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          "Register",
+          style: kNormalWhiteTextStyle,
         ),
-        body: TabBarView(children: [
-          //signUpscreen
-
-          SignUpScreen(), //end of signup screen
-
-          // sign in screen
-          SignInScreen(),
-        ]),
+        centerTitle: true,
+        bottom: TabBar(
+          controller: customTabController,
+          indicatorColor: kAppBarRedColour,
+          labelColor: kAppBarRedColour,
+          unselectedLabelColor: Colors.black,
+          tabs: const [
+            Tab(
+              text: "SIGN UP",
+            ),
+            Tab(
+              text: "SIGN IN",
+            ),
+          ],
+        ),
       ),
+      body: TabBarView(
+        controller: customTabController,
+          children: [
+        //signUpscreen
+
+        SignUpScreen(
+          onTap: (){
+            customTabController.animateTo(1);
+          },
+        ), //end of signup screen
+
+        // sign in screen
+        SignInScreen(),
+      ]),
     );
   }
 }

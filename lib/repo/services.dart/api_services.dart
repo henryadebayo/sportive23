@@ -10,12 +10,13 @@ class AuthServices{
 
 
   final UserModel userModel = UserModel();
+  String responseBody;
 
 
   Future<dynamic> SignUp(String email, String password, String firstName, String lastName)async{
 
     try{
-      var response = await http.post(Uri.parse('$baseUrl/signup')
+      var response = await http.post(Uri.parse('https://sportive-23.herokuapp.com/api/v1/auth/signup')
       ,body: {
         "email": email,
             "password": password,
@@ -48,6 +49,7 @@ class AuthServices{
       }else{
         print("error signing In and response status code is ${response.statusCode}");
       }
+      responseBody = response.statusCode as String;
       return response.body.toString();
     }catch(e){
      print(e);
