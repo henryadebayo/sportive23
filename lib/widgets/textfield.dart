@@ -79,6 +79,7 @@ class CustomPasswordTextField extends StatelessWidget {
       keyboardType: keyboardType,
       autofillHints: [autofill],
       validator: validator,
+      onChanged: onChanged,
       obscureText:hideText,
       decoration: InputDecoration(
         suffix: suffixIcon,
