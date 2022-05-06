@@ -9,6 +9,7 @@ import 'package:sportive23/widgets/orWithDivider.dart';
 import 'package:sportive23/widgets/textfield.dart';
 import 'package:sportive23/widgets/transparentButtonWidget.dart';
 
+import '../../const/coloursConst.dart';
 import 'widgets/login_SigninButton.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final formKey = GlobalKey<FormState>();
   bool _isVisible = false;
-  AuthServices authServices;
+  AuthServices authServices = AuthServices();
    UserModel userModel = UserModel();
 
 
@@ -61,6 +62,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       CustomTextForm(
                         label: "Email",
                         autofill: AutofillHints.email,
+                        onChanged:  (value){
+                          userModel.email = value;
+                        },
                         validator: (email) =>
                             email != null && !EmailValidator.validate(email)
                                 ? "enter your valid email"
@@ -118,28 +122,55 @@ class _SignInScreenState extends State<SignInScreen> {
                 ],
               ),
               SizedBox(height: 50.h),
-              buildSignin_SignupButton(
-                  label: "LOGIN",
-                  onLongPress: () {
-                    Navigator.of(context)
-                        .pushReplacement(MaterialPageRoute(builder: (ctx) {
-                      return const BottomNavigation();
-                    }));
-                  },
-                  onTab: () {
+              SizedBox(
+                width: double.infinity,
+                child:
+                TextButton(
+                  onPressed: () {
                     if (formKey.currentState.validate()) {
                       authServices.SignIn(userModel.email, userModel.password);
-                      // if(authServices.){
-                      //
-                      // }
-                      Navigator.of(context)
-                          .pushReplacement(MaterialPageRoute(builder: (ctx) {
-                        return const BottomNavigation();
-                      }));
-                    } else {
-                      return "Please input a valid email and password";
+                      print("this is the response statuscode :${authServices.responseBody}");
+
+                      // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
+                      //   return  BottomNavigation();
+                      // }));
                     }
-                  }),
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(kAppBarRedColour),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    padding: MaterialStateProperty.all(
+                        EdgeInsets.symmetric(vertical: 14.0.h)),
+                  ),
+                  child: Text(
+                    "LOGIN",
+                    style: TextStyle(fontSize: 16.sp),
+                  ),
+                ),
+              ),
+              // buildSignin_SignupButton(
+              //     label: "LOGIN",
+              //     onLongPress: () {
+              //       Navigator.of(context)
+              //           .pushReplacement(MaterialPageRoute(builder: (ctx) {
+              //         return const BottomNavigation();
+              //       }));
+              //     },
+              //     onTab: () {
+              //       if (formKey.currentState.validate()) {
+              //         authServices.SignIn(userModel.email, userModel.password);
+              //         // if(authServices.){
+              //         //
+              //         // }
+              //         Navigator.of(context)
+              //             .pushReplacement(MaterialPageRoute(builder: (ctx) {
+              //           return const BottomNavigation();
+              //         }));
+              //       } else {
+              //         return "Please input a valid email and password";
+              //       }
+                  //}
+               //   ),
             ],
           ),
         ),

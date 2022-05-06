@@ -75,7 +75,7 @@ class CustomPasswordTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-
+      maxLength: 19,
       keyboardType: keyboardType,
       autofillHints: [autofill],
       validator: validator,

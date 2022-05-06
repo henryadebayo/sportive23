@@ -114,15 +114,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(height: 40.h),
             SizedBox(
               width: double.infinity,
-              child: TextButton(
+              child:
+              TextButton(
                 onPressed: () {
                   if (formKey.currentState.validate()) {
                     //check if form data are valid
-                  //authServices.SignUp(userModel.password, userModel.email, userModel.firstName, userModel.lastName);
+                 authServices.SignUp( userModel.email,userModel.password, userModel.firstName, userModel.lastName);
                   print("this is the response statuscode :${authServices.responseBody}");
-                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
-                    return  BottomNavigation();
-                  }));
+                  // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
+                  //   return  BottomNavigation();
+                  // }));
                  }
                 },
                 style: ButtonStyle(
