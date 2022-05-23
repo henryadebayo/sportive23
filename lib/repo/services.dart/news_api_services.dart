@@ -30,7 +30,7 @@ class NewsServices {
         _newsPayLoad = [];
       }
     } catch (e) {
-  print( "this is the error ${e.toString()}");
+  print( "this is the error : ${e.toString()}");
     }
   }
 }
