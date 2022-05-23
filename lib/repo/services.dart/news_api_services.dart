@@ -1,5 +1,5 @@
 
-import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:sportive23/repo/model/news_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,7 +11,9 @@ class NewsServices {
 
 
 
-  Future<String> getNews() async {
+
+  Future<List<JustNewsModel>> getNews() async {
+
     try {
       http.Response response = await http.get(Uri.parse("https://sportive-23.herokuapp.com/api/v1/news/all"),
           headers: {
@@ -23,8 +25,17 @@ class NewsServices {
             'GET,PUT,POST,DELETE'
           }
       );
-      print(response.body as String);
-      return response.body;
+      List<JustNewsModel> _newsPayLoad = [];
+      var data = jsonDecode(response.body);
+      if( response.statusCode == 200) {
+        for(var payLoad in data["news"]){
+          JustNewsModel _justNewsModel = JustNewsModel.fromJson(payLoad);
+          _newsPayLoad.add(payLoad);
+        }
+        return _newsPayLoad;
+      }else{
+        _newsPayLoad = [];
+      }
     } catch (e) {
   print( "this is the error ${e.toString()}");
     }

@@ -37,10 +37,10 @@ class Data {
     this.news,
   });
 
-  List<News> news;
+  List<JustNewsModel> news;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    news: List<News>.from(json["news"].map((x) => News.fromJson(x))),
+    news: List<JustNewsModel>.from(json["news"].map((x) => JustNewsModel.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -48,8 +48,8 @@ class Data {
   };
 }
 
-class News {
-  News({
+class JustNewsModel {
+  JustNewsModel({
     this.uri,
     this.url,
     this.image,
@@ -77,7 +77,7 @@ class News {
   DateTime updatedAt;
   String id;
 
-  factory News.fromJson(Map<String, dynamic> json) => News(
+  factory JustNewsModel.fromJson(Map<String, dynamic> json) => JustNewsModel(
     uri: json["uri"],
     url: json["url"],
     image: json["image"],

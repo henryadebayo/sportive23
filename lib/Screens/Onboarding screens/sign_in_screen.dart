@@ -130,11 +130,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 TextButton(
                   onPressed: () {
                     if (formKey.currentState.validate()) {
+                      authServices.SignIn(userModel.email, userModel.password);
                       newsServices.getNews();
-                     // authServices.SignIn(userModel.email, userModel.password);
-                     //  print("this is the response statuscode :${authServices.responseBody}");
-                  //  print("this is the response statuscode :${newsServices.}");
-
                       // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
                       //   return  BottomNavigation();
                       // }));
