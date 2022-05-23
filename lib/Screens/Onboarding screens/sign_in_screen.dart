@@ -5,6 +5,7 @@ import 'package:sportive23/Screens/Onboarding%20screens/ressetPassword_Screen.da
 import 'package:sportive23/Screens/bottom%20navigation/bottomNavigation.dart';
 import 'package:sportive23/repo/model/user_model.dart';
 import 'package:sportive23/repo/services.dart/api_services.dart';
+import 'package:sportive23/repo/services.dart/news_api_services.dart';
 import 'package:sportive23/widgets/orWithDivider.dart';
 import 'package:sportive23/widgets/textfield.dart';
 import 'package:sportive23/widgets/transparentButtonWidget.dart';
@@ -26,6 +27,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final formKey = GlobalKey<FormState>();
   bool _isVisible = false;
   AuthServices authServices = AuthServices();
+  NewsServices newsServices = NewsServices();
    UserModel userModel = UserModel();
 
 
@@ -128,8 +130,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 TextButton(
                   onPressed: () {
                     if (formKey.currentState.validate()) {
-                      authServices.SignIn(userModel.email, userModel.password);
-                      print("this is the response statuscode :${authServices.responseBody}");
+                      newsServices.getNews();
+                     // authServices.SignIn(userModel.email, userModel.password);
+                     //  print("this is the response statuscode :${authServices.responseBody}");
+                  //  print("this is the response statuscode :${newsServices.}");
 
                       // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
                       //   return  BottomNavigation();
