@@ -1,21 +1,14 @@
-
 import 'dart:convert';
 import 'package:sportive23/repo/model/news_model.dart';
 import 'package:http/http.dart' as http;
-
 import '../constants/constants.dart';
 
 class NewsServices {
 
-  String responseBody;
-
-
-
-
   Future<List<JustNewsModel>> getNews() async {
 
     try {
-      http.Response response = await http.get(Uri.parse("https://sportive-23.herokuapp.com/api/v1/news/all"),
+      http.Response response = await http.get(Uri.parse("$baseUrl/news/all"),
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
