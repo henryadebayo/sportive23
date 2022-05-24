@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sportive23/Screens/homeScreen/widgets/club_add_widget.dart';
 import 'package:sportive23/Screens/homeScreen/widgets/homeScreenVideoWidget.dart';
@@ -11,6 +12,9 @@ import 'package:sportive23/Screens/stat%20screens/widgets/todays_matches_table.d
 import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/widgets/clubCircle.dart';
 import 'package:sportive23/Screens/homeScreen/widgets/mainHomeWidget.dart';
+
+import '../../blocs/news_bloc/news_bloc_bloc.dart';
+import '../../repo/model/news_model.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
@@ -272,31 +276,72 @@ class _MyHomePageState extends State<MyHomePage> {
                   CustomeBorder: BorderRadius.only(
                     topLeft: Radius.circular(10.0.r),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 16.0.w,
-                          top: 16.0.h,
-                        ),
-                        child: Text(
-                          "News Feed",
-                          style: TextStyle(
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0.h,
-                      ),
-                      NewsFeedWidget(),
-                      NewsFeedWidget(),
-                      NewsFeedWidget(),
-                      NewsFeedWidget(),
-                      NewsFeedWidget(),
-                    ],
+                  child: 
+                  BlocBuilder<NewsBloc, NewsState>(
+                    builder: (context, state) {
+                      if (state is NewsLoadingState) {
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color:  kAppBarRedColour,
+                          ),
+                        );
+                      } else if (state is NewsLoadedState) {
+                        return
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 16.0.w,
+                                top: 16.0.h,
+                              ),
+                              child: Text(
+                                "News Feed",
+                                style: TextStyle(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.0.h,
+                            ),
+                            // Expanded(
+                            //   child: ListView.builder(
+                            //     itemCount:6,
+                            //       itemBuilder: (BuildContext ctx, int index){
+                            //     return NewsFeedWidget(
+                            //       title: _news[index].title,
+                            //       imgUrl: _news[index].image,
+                            //     );
+                            //   }),
+                            // )
+                            // NewsFeedWidget(),
+                            // NewsFeedWidget(),
+                            // NewsFeedWidget(),
+                            // NewsFeedWidget(),
+                            // NewsFeedWidget(),
+
+                      NewsFeedWidget(
+                            title: state.news[1].title,
+                            imgUrl: state.news[1].image,
+                          ),
+                          ],
+                        );
+                      }else if (state is NewsErrorState){
+                        return const Center(child: Text("Can't Load news feed at the moment", style: TextStyle(
+                          color: kAppBarRedColour
+                        ),)
+                        );
+                      }else{
+                        return
+                        const Center(
+                          child: CircularProgressIndicator(
+                              color: kAppBarRedColour
+                          ),
+                        );
+                      }
+                    }
                   ),
                 ),
 

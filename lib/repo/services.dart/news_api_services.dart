@@ -18,16 +18,19 @@ class NewsServices {
             'GET,PUT,POST,DELETE'
           }
       );
-      List<JustNewsModel> _newsPayLoad = [];
+      var status = response.statusCode;
+      List<JustNewsModel> newsPayLoad = [];
       var data = jsonDecode(response.body);
+      print("this is Status code ::: $status");
       if( response.statusCode == 200) {
         for(var payLoad in data["news"]){
           JustNewsModel _justNewsModel = JustNewsModel.fromJson(payLoad);
-          _newsPayLoad.add(payLoad);
+          newsPayLoad.add(payLoad);
         }
-        return _newsPayLoad;
+        print("this is payload ::: $newsPayLoad");
+        return newsPayLoad;
       }else{
-        _newsPayLoad = [];
+        newsPayLoad = [];
       }
     } catch (e) {
   print( "this is the error : ${e.toString()}");

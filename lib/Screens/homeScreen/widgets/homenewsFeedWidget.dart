@@ -4,7 +4,11 @@ import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/const/logos.dart';
 
 class NewsFeedWidget extends StatelessWidget {
-  const NewsFeedWidget({
+  final String title;
+  final String imgUrl;
+   const NewsFeedWidget({
+    this.title,
+     this.imgUrl,
     Key key,
   }) : super(key: key);
 
@@ -18,11 +22,14 @@ class NewsFeedWidget extends StatelessWidget {
               child: Container(
                 height: 140.h,
                 width: 329.w,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                            "assets/images/selectedTeamNewsImageMock.png"))),
+                child: Image.network(imgUrl, fit: BoxFit.cover,),
+                // decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //         fit: BoxFit.cover,
+                //         image: AssetImage(
+                //             "assets/images/selectedTeamNewsImageMock.png"),
+                //     ),
+                // ),
               ),
             ),
             Positioned(
@@ -35,8 +42,7 @@ class NewsFeedWidget extends StatelessWidget {
                   width: 300.w,
                   child: Center(
                     child: Text(
-                      "'Sancho is still young, but this is not FIFA!' - Ince slams £73m winger & takes aim at Martial"
-                      " after Man Utd cup exit",
+                      "$title",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white),
                     ),

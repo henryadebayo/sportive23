@@ -116,6 +116,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               width: double.infinity,
               child:
               TextButton(
+                onLongPress:(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
+      return  BottomNavigation();
+    }));
+                } ,
                 onPressed: () {
                   if (formKey.currentState.validate()) {
                     //check if form data are valid

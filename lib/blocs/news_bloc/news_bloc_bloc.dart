@@ -13,6 +13,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     on<StartEvent>((event, emit)async {
       try{
         var response = await newsServices.getNews();
+        print("this is :::: $response " );
         emit(NewsLoadedState(news: response)
         );
       }catch(e){
