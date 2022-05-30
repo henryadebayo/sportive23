@@ -306,26 +306,24 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 10.0.h,
                             ),
-                            // Expanded(
-                            //   child: ListView.builder(
-                            //     itemCount:6,
-                            //       itemBuilder: (BuildContext ctx, int index){
-                            //     return NewsFeedWidget(
-                            //       title: _news[index].title,
-                            //       imgUrl: _news[index].image,
-                            //     );
-                            //   }),
-                            // )
+                            ListView.builder(
+                              itemCount:6,
+                                itemBuilder: (BuildContext ctx, int index){
+                              return NewsFeedWidget(
+                                title: state.news[index].title,
+                                imgUrl: state.news[index].image,
+                              );
+                            })
                             // NewsFeedWidget(),
                             // NewsFeedWidget(),
                             // NewsFeedWidget(),
                             // NewsFeedWidget(),
                             // NewsFeedWidget(),
 
-                      NewsFeedWidget(
-                            title: state.news[1].title,
-                            imgUrl: state.news[1].image,
-                          ),
+                      // NewsFeedWidget(
+                      //       title: state.news[1].title,
+                      //       imgUrl: state.news[1].image,
+                      //     ),
                           ],
                         );
                       }else if (state is NewsErrorState){

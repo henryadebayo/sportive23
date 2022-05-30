@@ -34,10 +34,10 @@ class Data {
     this.leagues,
   });
 
-  List<League> leagues;
+  List<JustLeague> leagues;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    leagues: List<League>.from(json["leagues"].map((x) => League.fromJson(x))),
+    leagues: List<JustLeague>.from(json["leagues"].map((x) => JustLeague.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -45,8 +45,8 @@ class Data {
   };
 }
 
-class League {
-  League({
+class JustLeague {
+  JustLeague({
     this.coverage,
     this.active,
     this.type,
@@ -84,7 +84,7 @@ class League {
   String id;
   bool featured;
 
-  factory League.fromJson(Map<String, dynamic> json) => League(
+  factory JustLeague.fromJson(Map<String, dynamic> json) => JustLeague(
     coverage: Coverage.fromJson(json["coverage"]),
     active: json["active"],
     type: typeValues.map[json["type"]],

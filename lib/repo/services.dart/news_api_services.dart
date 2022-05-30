@@ -21,12 +21,18 @@ class NewsServices {
       var status = response.statusCode;
       List<JustNewsModel> newsPayLoad = [];
       var data = jsonDecode(response.body);
-      print("this is Status code ::: $status");
+
+      print("this is data ::: ${data["data"]["news"]}");
+
       if( response.statusCode == 200) {
-        for(var payLoad in data["news"]){
-          JustNewsModel _justNewsModel = JustNewsModel.fromJson(payLoad);
+        for(int i= 0; i< data["data"]["news"].length; i++){
+          JustNewsModel payLoad = JustNewsModel.fromJson(data["data"]["news"][i]);
           newsPayLoad.add(payLoad);
         }
+        // for (var payLoad in data["data"]["news"]){
+        //   JustNewsModel _justNewsModel = JustNewsModel.fromJson(payLoad);
+        //   newsPayLoad.add(payLoad);
+        // }
         print("this is payload ::: $newsPayLoad");
         return newsPayLoad;
       }else{
