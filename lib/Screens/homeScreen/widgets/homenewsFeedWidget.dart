@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/const/logos.dart';
 
 class NewsFeedWidget extends StatelessWidget {
@@ -44,7 +43,7 @@ class NewsFeedWidget extends StatelessWidget {
                     child: Text(
                       "$title",
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

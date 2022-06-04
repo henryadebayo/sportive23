@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/const/textStylesConst.dart';
-import 'package:sportive23/Screens/Onboarding%20screens/widgets/login_SigninButton.dart';
+import 'package:sportive23/Screens/auth%20screens/widgets/login_SigninButton.dart';
 import 'package:sportive23/widgets/textfield.dart';
 
 class ResetPassWordScreen extends StatefulWidget {

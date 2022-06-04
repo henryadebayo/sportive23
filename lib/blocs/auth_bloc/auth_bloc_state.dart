@@ -1,15 +1,10 @@
-part of 'auth_bloc_bloc.dart';
+part of 'auth_bloc.dart';
 
 @immutable
 abstract class AuthBlocState {}
 
-class AuthBlocInitial extends AuthBlocState {}
-class AuthBlocSignInn extends AuthBlocState {}
+class AuthLoading extends AuthBlocState {}
 
-// final String emailAddress;
-// final String password;
-// // final UserModel User = UserModel();
-// AuthSignIn({
-//   this.emailAddress,
-//   this.password
-// });
+class AuthSuccessful extends AuthBlocState {}
+
+class AuthFailed extends AuthBlocState{}

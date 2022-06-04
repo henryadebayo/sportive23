@@ -7,7 +7,7 @@ import 'package:sportive23/widgets/orWithDivider.dart';
 import 'package:sportive23/widgets/textfield.dart';
 
 import '../../repo/model/user_model.dart';
-import '../../repo/services.dart/api_services.dart';
+import '../../repo/services.dart/auth_api_services.dart';
 
 class SignUpScreen extends StatefulWidget {
   Function onTap;
@@ -117,15 +117,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child:
               TextButton(
                 onLongPress:(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
       return  BottomNavigation();
     }));
                 } ,
-                onPressed: () {
+                onPressed: ()async {
                   if (formKey.currentState.validate()) {
                     //check if form data are valid
-                 authServices.SignUp( userModel.email,userModel.password, userModel.firstName, userModel.lastName);
-                  print("this is the response statuscode :${authServices.responseBody}");
+                var res = await authServices.SignUp( userModel.email,userModel.password, userModel.firstName, userModel.lastName);
+                print("this is SignUp res ::: ${res}");
+                if( res['success'] == true ){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
+                    return  BottomNavigation();
+                  }));
+                }else{
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Error: ${res['message']}'),
+                    backgroundColor: Colors.red.shade300,
+                  ));
+                }
                   // Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){
                   //   return  BottomNavigation();
                   // }));

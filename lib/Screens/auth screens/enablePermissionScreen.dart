@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/const/constantSizes.dart';
-import 'package:sportive23/Screens/Onboarding%20screens/widgets/login_SigninButton.dart';
+
+import '../auth screens/widgets/login_SigninButton.dart';
 
 class PermissionScreen extends StatefulWidget {
   const PermissionScreen({Key key}) : super(key: key);

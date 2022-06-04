@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sportive23/Screens/Onboarding%20screens/ressetPassword_Screen.dart';
 import 'package:sportive23/Screens/profile%20screen/edit_profile_screen.dart';
 import 'package:sportive23/Screens/users_payment_screen/deposit.dart';
 import 'package:sportive23/Screens/users_payment_screen/withdrawal.dart';
 import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/const/textStylesConst.dart';
+
+import '../auth screens/ressetPassword_Screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key key}) : super(key: key);

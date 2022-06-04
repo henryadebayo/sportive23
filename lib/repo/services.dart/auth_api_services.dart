@@ -15,7 +15,7 @@ class AuthServices{
   String responseBody2;
 
 
-  Future<http.Response> SignUp(String email, String password, String firstName, String lastName)async{
+  Future<dynamic> SignUp(String email, String password, String firstName, String lastName)async{
 
     try{
 
@@ -36,11 +36,13 @@ class AuthServices{
 
       if(response.statusCode == 200){
         print("signed up successfully");
+        print("THis is Sign up response.body ${response.body}");
+        return jsonDecode(response.body);
       }else{
         print("error signing up and response status code is ${response.statusCode}");
         print (json.encode(userData));
       }
-      return response;
+      return jsonDecode(response.body);
     }catch(e){
       print(e);
     }
@@ -61,8 +63,6 @@ class AuthServices{
         },
         body: json.encode(userData),
       );
-
-
     //   switch (response.statusCode) {
     //     case 200:
     //       _apiResponse.Data = User.fromJson(json.decode(response.body));
@@ -79,12 +79,15 @@ class AuthServices{
     // }
       print(response.body);
       if(response.statusCode == 200){
+
         print("signed in successfully");
+        print("THis is Sign up response.body ${response.body}");
+        return jsonDecode(response.body);
       }else{
         print("error signing In and response status code is ${response.statusCode}");
         print(json.encode(userData));
       }
-      return response.body.toString();
+      return jsonDecode(response.body);
     }catch(e){
      print(e);
     }

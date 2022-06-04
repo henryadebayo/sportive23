@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sportive23/Screens/homeScreen/widgets/club_add_widget.dart';
 import 'package:sportive23/Screens/homeScreen/widgets/homeScreenVideoWidget.dart';
 import 'package:sportive23/Screens/homeScreen/widgets/homeScreenWidget1.dart';
@@ -12,9 +13,9 @@ import 'package:sportive23/Screens/stat%20screens/widgets/todays_matches_table.d
 import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/widgets/clubCircle.dart';
 import 'package:sportive23/Screens/homeScreen/widgets/mainHomeWidget.dart';
-
 import '../../blocs/news_bloc/news_bloc_bloc.dart';
-import '../../repo/model/news_model.dart';
+
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
@@ -135,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 return Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 12.0.w),
-                                  child: TodaysMatchesTable(),
+                                  child: const TodaysMatchesTable(),
                                 );
                               }),
                         )
@@ -172,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Padding(
                           padding: EdgeInsets.only(left: 12.0.w, top: 8.0.h),
                           child: Column(
-                            children: [
+                            children: const [
                               topNewsWidget(),
                               topNewsWidget(),
                               topNewsWidget(),
@@ -231,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               width: 8.0.w,
                             ),
                             homeClubCircle(
-                              assetName: "assets/svg/Chelsea.svg",
+                              assetName: "assets/svg/Chelsea_FC2.svg",
                               label: "club",
                               height: 60.h,
                               Weight: 60.w,
@@ -242,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               width: 8.0.w,
                             ),
                             homeClubCircle(
-                              assetName: "assets/svg/Chelsea.svg",
+                              assetName: "assets/svg/Chelsea_FC2.svg",
                               label: "club",
                               height: 60.h,
                               Weight: 60.w,
@@ -253,7 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               width: 8.0.w,
                             ),
                             homeClubCircle(
-                              assetName: "assets/svg/Chelsea.svg",
+                              assetName: "assets/svg/Chelsea_FC2.svg",
                               label: "club",
                               height: 60.h,
                               Weight: 60.w,
@@ -306,24 +307,27 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(
                               height: 10.0.h,
                             ),
-                            ListView.builder(
-                              itemCount:6,
-                                itemBuilder: (BuildContext ctx, int index){
-                              return NewsFeedWidget(
-                                title: state.news[index].title,
-                                imgUrl: state.news[index].image,
-                              );
-                            })
-                            // NewsFeedWidget(),
-                            // NewsFeedWidget(),
-                            // NewsFeedWidget(),
-                            // NewsFeedWidget(),
-                            // NewsFeedWidget(),
 
-                      // NewsFeedWidget(
-                      //       title: state.news[1].title,
-                      //       imgUrl: state.news[1].image,
-                      //     ),
+                           NewsFeedWidget(
+                                title: state.news[8].title,
+                                imgUrl: state.news[7].image,
+                              ),
+                            NewsFeedWidget(
+                                title: state.news[7].title,
+                                imgUrl: state.news[7].image,
+                              ),
+                            NewsFeedWidget(
+                                title: state.news[2].title,
+                                imgUrl: state.news[2].image,
+                              ),
+                            NewsFeedWidget(
+                                title: state.news[3].title,
+                                imgUrl: state.news[3].image,
+                              ),
+                            NewsFeedWidget(
+                                title: state.news[4].title,
+                                imgUrl: state.news[4].image,
+                              ),
                           ],
                         );
                       }else if (state is NewsErrorState){
@@ -333,11 +337,39 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       }else{
                         return
-                        const Center(
-                          child: CircularProgressIndicator(
-                              color: kAppBarRedColour
-                          ),
-                        );
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  left: 16.0.w,
+                                  top: 16.0.h,
+                                ),
+                                child: Text(
+                                  "News Feed",
+                                  style: TextStyle(
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.0.h,
+                              ),
+                              const newsFeedLoader(),
+                              const newsFeedLoader(),
+                              const newsFeedLoader(),
+                              const newsFeedLoader(),
+                              const newsFeedLoader(),
+                              const newsFeedLoader(),
+                            ],
+                          );
+
+                        // const Center(
+                        //   // child: CircularProgressIndicator(
+                        //   //     color: kAppBarRedColour
+                        //   // ),
+                        // );
                       }
                     }
                   ),
@@ -375,11 +407,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.white,
                         thickness: 0.8.h,
                       ),
-                      TransferNewsWidget(),
-                      TransferNewsWidget(),
-                      TransferNewsWidget(),
-                      TransferNewsWidget(),
-                      TransferNewsWidget(),
+                      const TransferNewsWidget(),
+                      const TransferNewsWidget(),
+                      const TransferNewsWidget(),
+                      const TransferNewsWidget(),
+                      const TransferNewsWidget(),
                     ],
                   ),
                 ),
@@ -438,6 +470,27 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class newsFeedLoader extends StatelessWidget {
+  const newsFeedLoader({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      child: Container(
+        height: 140.h,
+        width: 329.w,
+       decoration: BoxDecoration(
+         borderRadius: BorderRadius.circular(10.0.r),
+       ),
+      ),
+      baseColor:  Colors.white54,
+      highlightColor:  Colors.redAccent[100],
     );
   }
 }

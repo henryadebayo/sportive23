@@ -1,15 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sportive23/Screens/Onboarding%20screens/sign_in_screen.dart';
-import 'package:sportive23/Screens/Onboarding%20screens/sign_up_screen.dart';
-import 'package:sportive23/Screens/bottom%20navigation/bottomNavigation.dart';
+import 'package:sportive23/Screens/auth%20screens/sign_in_screen.dart';
+import 'package:sportive23/Screens/auth%20screens/sign_up_screen.dart';
 import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/const/textStylesConst.dart';
-import 'package:sportive23/Screens/Onboarding%20screens/widgets/login_SigninButton.dart';
-import 'package:sportive23/widgets/orWithDivider.dart';
-import 'package:sportive23/widgets/textfield.dart';
-import 'package:sportive23/widgets/transparentButtonWidget.dart';
 
 class SignInSignOut extends StatefulWidget {
 
