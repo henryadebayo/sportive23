@@ -3,7 +3,7 @@ import 'package:sportive23/repo/model/league_model.dart';
 import 'package:http/http.dart' as http;
 import '../constants/constants.dart';
 
-Future<List<JustLeague>> getLeagues()async {
+Future<List<JustLeague>> getAllLeagues()async {
 try{
   http.Response response = await http.get(Uri.parse("$baseUrl/sports/leagues/all"),
       headers: {
@@ -34,4 +34,11 @@ try{
 
 }
 
+
+//<------------------------- GET ALL FIXTURES METHOD -------------------------->
+
+Future<dynamic> getAllFixtures()async {
+
+
+}
 }
