@@ -135,7 +135,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         //context.read<AuthBloc>().add(AuthSignIn(email:userModel.email,password:userModel.password));
                         // AuthBloc.add( AuthSignIn(email:userModel.email,password:userModel.password));
                         var res = await
-                      authServices.SignIn(userModel.email, userModel.password);
+                      authServices.signIn(userModel.email, userModel.password);
                         print("this is Signin res ::: ${res.toString()}");
                       if( res['success'] == true ){
                         Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){

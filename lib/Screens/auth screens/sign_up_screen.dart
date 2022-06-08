@@ -124,7 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onPressed: ()async {
                   if (formKey.currentState.validate()) {
                     //check if form data are valid
-                var res = await authServices.SignUp( userModel.email,userModel.password, userModel.firstName, userModel.lastName);
+                var res = await authServices.signUp( userModel.email,userModel.password, userModel.firstName, userModel.lastName);
                 print("this is SignUp res ::: ${res}");
                 if( res['success'] == true ){
                   Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext Context){

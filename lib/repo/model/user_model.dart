@@ -18,6 +18,8 @@ class UserModel {
     this.id,
     this.createdAt,
     this.updatedAt,
+    this.accessToken,
+    this.refreshToken,
     this.v,
   });
 
@@ -30,6 +32,8 @@ class UserModel {
   DateTime createdAt;
   DateTime updatedAt;
   int v;
+  String accessToken;
+  String refreshToken;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
     firstName: json["firstName"],

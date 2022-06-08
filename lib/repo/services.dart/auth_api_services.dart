@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sportive23/repo/constants/constants.dart';
 import 'package:sportive23/repo/model/user_model.dart';
 
@@ -15,7 +16,7 @@ class AuthServices{
   String responseBody2;
 
 
-  Future<dynamic> SignUp(String email, String password, String firstName, String lastName)async{
+  Future<dynamic> signUp(String email, String password, String firstName, String lastName)async{
 
     try{
 
@@ -51,7 +52,7 @@ class AuthServices{
 
 
 
-  Future<dynamic> SignIn(String email, String password)async{
+  Future<UserModel> signIn(String email, String password)async{
     try{
       final Map<String, dynamic> userData = {
         "email": email,
@@ -78,18 +79,41 @@ class AuthServices{
     //   _apiResponse.ApiError = ApiError(error: "Server error. Please retry");
     // }
       print(response.body);
+      var res = jsonDecode(response.body);
       if(response.statusCode == 200){
 
-        print("signed in successfully");
-        print("THis is Sign up response.body ${response.body}");
-        return jsonDecode(response.body);
+        // print("signed in successfully");
+        // print("THis is Sign up response.body ${response.body}");
+        final res = jsonDecode(response.body);
+        final user = UserModel.fromJson(res["data"]["user"]);
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setString('user', json.encode(user.toJson()));
+        return user;
       }else{
+
+
         print("error signing In and response status code is ${response.statusCode}");
-        print(json.encode(userData));
+        // print(json.encode(userData));
       }
-      return jsonDecode(response.body);
+      return res["message"];
     }catch(e){
      print(e);
     }
+  }
+
+  Future<UserModel> getLoggedInUserData()async{
+    final prefs = await SharedPreferences.getInstance();
+    final userJson = prefs.get('user');
+    if(userJson == null){
+      return null;
+    }else{
+      return UserModel.fromJson(json.decode(userJson));
+    }
+
+  }
+
+  Future<void> signOut()async{
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('user');
   }
 }
