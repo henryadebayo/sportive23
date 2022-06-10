@@ -45,8 +45,10 @@ class AuthServices{
       }else{
         print("error signing up and response status code is ${response.statusCode}");
         print (json.encode(userData));
+        var res = jsonDecode(response.body);
+        signUp_msg = res["message"];
+        return signUp_msg;
       }
-      return signUp_msg;
     }catch(e){
       print(e);
     }
@@ -55,7 +57,7 @@ class AuthServices{
 
 
 
-  Future<UserModel> signIn(String email, String password)async{
+  Future<dynamic> signIn(String email, String password)async{
     try{
       final Map<String, dynamic> userData = {
         "email": email,
