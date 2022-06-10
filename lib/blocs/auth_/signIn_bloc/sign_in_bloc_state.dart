@@ -10,7 +10,7 @@ class SignInLoading extends AuthSignInState {
 
 class SignedIn extends AuthSignInState {
   final UserModel user;
-  SignedIn({this.user});
+  SignedIn({@required this.user});
 }
 
 class SignInError extends AuthSignInState {

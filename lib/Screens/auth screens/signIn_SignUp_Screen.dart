@@ -6,8 +6,12 @@ import 'package:sportive23/const/coloursConst.dart';
 import 'package:sportive23/const/textStylesConst.dart';
 
 class SignInSignOut extends StatefulWidget {
-
-   const SignInSignOut({Key key}) : super(key: key);
+  final Key scaffoldKey;
+  final bool isLoading;
+    SignInSignOut({Key key,
+      this.isLoading,
+      this.scaffoldKey
+   }) : super(key: key);
 
   @override
   _SignInSignOutState createState() => _SignInSignOutState();
@@ -32,6 +36,7 @@ class _SignInSignOutState extends State<SignInSignOut> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: widget.scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(

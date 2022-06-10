@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sportive23/Screens/auth screens/signIn_SignUp_Screen.dart';
+import 'package:sportive23/blocs/auth_/signIn_bloc/sign_in_bloc_bloc.dart';
 import 'package:sportive23/blocs/news_bloc/news_bloc_bloc.dart';
-import 'package:sportive23/repo/services.dart/auth_api_services.dart';
 import 'package:sportive23/repo/services.dart/news_api_services.dart';
 
-import 'blocs/auth_bloc/auth_bloc.dart';
+import 'blocs/auth_/signUp_bloc/signup_bloc_bloc.dart';
 
 
 void main() {
@@ -24,16 +24,17 @@ class MyApp extends StatelessWidget {
                   NewsBloc(newsServices: NewsServices())
                   ..add(StartEvent())
           ),
-          BlocProvider<AuthBloc>(
-              create: (ctx) => AuthBloc(
-                  authServices: AuthServices()
-          )),
+          BlocProvider<SignupBloc>(
+              create: (ctx) => SignupBloc()
+          ),
+          BlocProvider<SignInBloc>(
+              create: (ctx) => SignInBloc()),
         ],
         child: MaterialApp(
           theme: ThemeData(
             brightness: Brightness.light,
           ),
-          darkTheme: ThemeData(brightness: Brightness.dark),
+          // darkTheme: ThemeData(brightness: Brightness.dark),
           //home: Fixtures_screen(),
           //home: TodaysLive(),
           //home: SelectedTeamNewsPage(),

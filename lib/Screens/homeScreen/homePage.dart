@@ -107,40 +107,42 @@ class _MyHomePageState extends State<MyHomePage> {
                   CustomeBorder: BorderRadius.only(
                     topRight: Radius.circular(10.0.r),
                   ),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: 16.0.w,
-                            top: 16.0.h,
+                  child: Expanded(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 16.0.w,
+                              top: 16.0.h,
+                            ),
+                            child: Text(
+                              "Today's Matches",
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
                           ),
-                          child: Text(
-                            "Today's Matches",
-                            style: TextStyle(
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                          Divider(
+                            color: Colors.grey[300],
+                            thickness: 0.8.h,
                           ),
-                        ),
-                        Divider(
-                          color: Colors.grey[300],
-                          thickness: 0.8.h,
-                        ),
-                        Container(
-                          height: 132.h,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 4,
-                              itemBuilder: (BuildContext context, index) {
-                                return Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 12.0.w),
-                                  child: const TodaysMatchesTable(),
-                                );
-                              }),
-                        )
-                      ]),
+                          Container(
+                            height: 132.h,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 4,
+                                itemBuilder: (BuildContext context, index) {
+                                  return Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 12.0.w),
+                                    child: const TodaysMatchesTable(),
+                                  );
+                                }),
+                          )
+                        ]),
+                  ),
                 ),
                 SizedBox(
                   height: 10.0.h,
@@ -197,7 +199,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   CustomeBorder: BorderRadius.only(
                     topRight: Radius.circular(10.0.r),
                   ),
-                  child: Column(
+                  child:
+                  Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
@@ -278,65 +281,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     topLeft: Radius.circular(10.0.r),
                   ),
                   child: 
-                  BlocBuilder<NewsBloc, NewsState>(
-                    builder: (context, state) {
-                      if (state is NewsLoadingState) {
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color:  kAppBarRedColour,
-                          ),
-                        );
-                      } else if (state is NewsLoadedState) {
-                        return
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: 16.0.w,
-                                top: 16.0.h,
-                              ),
-                              child: Text(
-                                "News Feed",
-                                style: TextStyle(
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ),
+                  Expanded(
+                    child: BlocBuilder<NewsBloc, NewsState>(
+                      builder: (context, state) {
+                        if (state is NewsLoadingState) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color:  kAppBarRedColour,
                             ),
-                            SizedBox(
-                              height: 10.0.h,
-                            ),
-
-                           NewsFeedWidget(
-                                title: state.news[8].title,
-                                imgUrl: state.news[7].image,
-                              ),
-                            NewsFeedWidget(
-                                title: state.news[7].title,
-                                imgUrl: state.news[7].image,
-                              ),
-                            NewsFeedWidget(
-                                title: state.news[2].title,
-                                imgUrl: state.news[2].image,
-                              ),
-                            NewsFeedWidget(
-                                title: state.news[3].title,
-                                imgUrl: state.news[3].image,
-                              ),
-                            NewsFeedWidget(
-                                title: state.news[4].title,
-                                imgUrl: state.news[4].image,
-                              ),
-                          ],
-                        );
-                      }else if (state is NewsErrorState){
-                        return const Center(child: Text("Can't Load news feed at the moment", style: TextStyle(
-                          color: kAppBarRedColour
-                        ),)
-                        );
-                      }else{
-                        return
+                          );
+                        } else if (state is NewsLoadedState) {
+                          return
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -356,22 +311,72 @@ class _MyHomePageState extends State<MyHomePage> {
                               SizedBox(
                                 height: 10.0.h,
                               ),
-                              const newsFeedLoader(),
-                              const newsFeedLoader(),
-                              const newsFeedLoader(),
-                              const newsFeedLoader(),
-                              const newsFeedLoader(),
-                              const newsFeedLoader(),
+
+                             NewsFeedWidget(
+                                  title: state.news[8].title,
+                                  imgUrl: state.news[8].image,
+                                ),
+                              NewsFeedWidget(
+                                  title: state.news[7].title,
+                                  imgUrl: state.news[7].image,
+                                ),
+                              NewsFeedWidget(
+                                  title: state.news[2].title,
+                                  imgUrl: state.news[2].image,
+                                ),
+                              NewsFeedWidget(
+                                  title: state.news[3].title,
+                                  imgUrl: state.news[3].image,
+                                ),
+                              NewsFeedWidget(
+                                  title: state.news[4].title,
+                                  imgUrl: state.news[4].image,
+                                ),
                             ],
                           );
+                        }else if (state is NewsErrorState){
+                          return const Center(child: Text("Can't Load news feed at the moment", style: TextStyle(
+                            color: kAppBarRedColour
+                          ),)
+                          );
+                        }else{
+                          return
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 16.0.w,
+                                    top: 16.0.h,
+                                  ),
+                                  child: Text(
+                                    "News Feed",
+                                    style: TextStyle(
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.0.h,
+                                ),
+                                const newsFeedLoader(),
+                                const newsFeedLoader(),
+                                const newsFeedLoader(),
+                                const newsFeedLoader(),
+                                const newsFeedLoader(),
+                                const newsFeedLoader(),
+                              ],
+                            );
 
-                        // const Center(
-                        //   // child: CircularProgressIndicator(
-                        //   //     color: kAppBarRedColour
-                        //   // ),
-                        // );
+                          // const Center(
+                          //   // child: CircularProgressIndicator(
+                          //   //     color: kAppBarRedColour
+                          //   // ),
+                          // );
+                        }
                       }
-                    }
+                    ),
                   ),
                 ),
 

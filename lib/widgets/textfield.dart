@@ -91,7 +91,7 @@ class CustomPasswordTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(4.0.r),
           //borderSide: BorderSide(color: Colors.black),
         ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 19.w, vertical: 5.0.h,),
+        contentPadding: EdgeInsets.only(left: 19.w, top:0.0.h ),
         hintText: label,
         hintStyle: TextStyle(
             fontSize: 15.sp

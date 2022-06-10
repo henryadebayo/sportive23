@@ -14,6 +14,7 @@ class AuthServices{
   final UserModel userModel = UserModel();
   String responseBody;
   String responseBody2;
+  String signUp_msg;
 
 
   Future<dynamic> signUp(String email, String password, String firstName, String lastName)async{
@@ -38,12 +39,14 @@ class AuthServices{
       if(response.statusCode == 200){
         print("signed up successfully");
         print("THis is Sign up response.body ${response.body}");
-        return jsonDecode(response.body);
+    var res = jsonDecode(response.body);
+    signUp_msg = res["message"];
+        return signUp_msg;
       }else{
         print("error signing up and response status code is ${response.statusCode}");
         print (json.encode(userData));
       }
-      return jsonDecode(response.body);
+      return signUp_msg;
     }catch(e){
       print(e);
     }
@@ -91,7 +94,6 @@ class AuthServices{
         return user;
       }else{
 
-
         print("error signing In and response status code is ${response.statusCode}");
         // print(json.encode(userData));
       }
@@ -104,10 +106,11 @@ class AuthServices{
   Future<UserModel> getLoggedInUserData()async{
     final prefs = await SharedPreferences.getInstance();
     final userJson = prefs.get('user');
-    if(userJson == null){
-      return null;
-    }else{
+    if(userJson != null){
       return UserModel.fromJson(json.decode(userJson));
+    }else{
+      return null;
+
     }
 
   }
